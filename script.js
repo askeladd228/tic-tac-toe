@@ -9,12 +9,11 @@ const game = (function () {
 
 
   floors.forEach(floor => {
-    // floor.addEventListener('click', addMarkToSystem);
     floor.addEventListener('click', addMark);
   });
 
   function addMark() {
-    if (this.innertext == 'X' || this.innerText == 'O') return;
+    if ((this.innerText == 'X') || (this.innerText == 'O')) return;
     else {
       addMarkToSystem();
       this.innerText = gameBoard[gameBoard.length-1];
@@ -25,8 +24,7 @@ const game = (function () {
     if (gameBoard[gameBoard.length-1] == playerOne) {
       gameBoard.push(playerTwo);
     } else gameBoard.push(playerOne);
-
-  }
+  };
 
 
 })();
