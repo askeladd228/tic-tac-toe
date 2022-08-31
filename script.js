@@ -1,5 +1,5 @@
 const game = (function () {
-  let gameBoard = ['X', 'O', 'X', 'O'];
+  let gameBoard = [];
 
   const playerOne = 'X'
   const playerTwo = 'O'
@@ -9,15 +9,20 @@ const game = (function () {
 
 
   floors.forEach(floor => {
+    floor.addEventListener('click', addMarkToSystem);
     floor.addEventListener('click', addMark);
   });
 
   function addMark() {
-    this.innerText = gameBoard[-1];
+    if (this.innertext == 'X' || this.innerText == 'O') return;
+    else this.innerText = gameBoard[gameBoard.length-1];
   }
 
   function addMarkToSystem () {
-    gameBoard.push(player);
+    if (gameBoard[gameBoard.length-1] == playerOne) {
+      gameBoard.push(playerTwo);
+    } else gameBoard.push(playerOne);
+
   }
 
 
