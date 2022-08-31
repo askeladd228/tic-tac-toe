@@ -1,0 +1,32 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+  justify-content: center;
+}
+
+.header {
+  justify-self: center;
+  align-self: center;
+}
+
+.gameBoard {
+  display: flex;
+
+}
+
+.floor{
+  width: 200px;
+  height: 200px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.floor:hover {
+  background-color: chartreuse;
+}
