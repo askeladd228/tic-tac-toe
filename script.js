@@ -9,13 +9,16 @@ const game = (function () {
 
 
   floors.forEach(floor => {
-    floor.addEventListener('click', addMarkToSystem);
+    // floor.addEventListener('click', addMarkToSystem);
     floor.addEventListener('click', addMark);
   });
 
   function addMark() {
     if (this.innertext == 'X' || this.innerText == 'O') return;
-    else this.innerText = gameBoard[gameBoard.length-1];
+    else {
+      addMarkToSystem();
+      this.innerText = gameBoard[gameBoard.length-1];
+    }
   }
 
   function addMarkToSystem () {
