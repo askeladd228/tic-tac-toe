@@ -8,7 +8,7 @@ html, body {
 .container {
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 5fr 2fr;
+  grid-template-rows: 1fr 5fr 1fr 1fr;
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -48,4 +48,7 @@ html, body {
   height: 50px;
   background-color: white;
   font-size: 2rem;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

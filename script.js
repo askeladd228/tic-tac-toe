@@ -26,8 +26,8 @@ const checkGame = (function () {
         
         if (totalPoints.length == 3) {
           createDiv('Player One Wins!');
-          createBtn('Restart', clearField);
           game.rmvEventListener();
+          buttons.btnStart.disabled = true;
         } else return;
       });
     } else return;
@@ -46,8 +46,8 @@ const checkGame = (function () {
         
         if (totalPoints.length == 3) {
           createDiv('Player Two Wins!');
-          createBtn('Restart', clearField);
           game.rmvEventListener();
+          buttons.btnStart.disabled = true;
         } else return;
       });
     } else return;
@@ -64,6 +64,7 @@ const checkGame = (function () {
     game.floors.forEach(floor => floor.innerText = '');
     announcement.replaceChildren();
     game.applyEventListener();
+    buttons.btnStart.disabled = false;
   }
 
   function createBtn(content, func) {
@@ -77,7 +78,8 @@ const checkGame = (function () {
   return {
     checkScoreOne,
     checkScoreTwo,
-    announcement
+    announcement,
+    clearField
   }
 
 })();
@@ -122,8 +124,6 @@ const game = (function () {
     } else gameBoard.push(playerOne);
   };
 
-  applyEventListener ()
-
   return {
     gameBoard,
     floors,
@@ -131,4 +131,30 @@ const game = (function () {
     applyEventListener
   };
 
+})();
+
+const player = (function () {
+
+});
+
+const buttons = (function () {
+  //cache DOM
+  const btnRestart = document.querySelector('.restart');
+  const btnStart = document.querySelector('.start');
+
+  function start () {
+    btnStart.addEventListener('click', game.applyEventListener);
+  }
+
+  function restart (){
+    btnRestart.addEventListener('click', checkGame.clearField);
+  }
+
+  start();
+  restart();
+
+  return {
+    btnRestart,
+    btnStart
+  }
 })();
