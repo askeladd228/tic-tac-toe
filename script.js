@@ -27,6 +27,7 @@ const checkGame = (function () {
         if (totalPoints.length == 3) {
           createDiv('Player One Wins!');
           createBtn('Restart', clearField);
+          game.rmvEventListener();
         } else return;
       });
     } else return;
@@ -46,6 +47,7 @@ const checkGame = (function () {
         if (totalPoints.length == 3) {
           createDiv('Player Two Wins!');
           createBtn('Restart', clearField);
+          game.rmvEventListener();
         } else return;
       });
     } else return;
@@ -61,6 +63,7 @@ const checkGame = (function () {
     game.gameBoard.length = 0;
     game.floors.forEach(floor => floor.innerText = '');
     announcement.replaceChildren();
+    game.applyEventListener();
   }
 
   function createBtn(content, func) {
@@ -88,23 +91,22 @@ const game = (function () {
   //cache DOM
   const floors = document.querySelectorAll('.floor');
 
-  if (checkGame.announcement.querySelector('.btn') == null){
+  function applyEventListener () {
     floors.forEach(floor => {
-      floor.addEventListener('click', addMark);
-      floor.addEventListener('click', checkGame.checkScoreOne);
-      floor.addEventListener('click', checkGame.checkScoreTwo);
+    floor.addEventListener('click', addMark);
+    floor.addEventListener('click', checkGame.checkScoreOne);
+    floor.addEventListener('click', checkGame.checkScoreTwo);
     });
   }
- 
-  if (checkGame.announcement.querySelector('.btn') !== null){
+
+  function rmvEventListener () {
     floors.forEach(floor => {
     floor.removeEventListener('click', addMark);
     floor.removeEventListener('click', checkGame.checkScoreOne);
     floor.removeEventListener('click', checkGame.checkScoreTwo);
     console.log('this is working')
     });
-  };
-
+  }
 
   function addMark() {
     if ((this.innerText == 'X') || (this.innerText == 'O')) return;
@@ -120,9 +122,13 @@ const game = (function () {
     } else gameBoard.push(playerOne);
   };
 
+  applyEventListener ()
+
   return {
     gameBoard,
-    floors
+    floors,
+    rmvEventListener,
+    applyEventListener
   };
 
 })();
