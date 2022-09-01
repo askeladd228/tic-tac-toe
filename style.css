@@ -8,18 +8,20 @@ html, body {
 .container {
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 1fr 5fr 2fr;
   justify-content: center;
+  justify-items: center;
+  align-items: center;
 }
 
 .header {
   justify-self: center;
   align-self: center;
+  font-size: 5rem;
 }
 
 .gameBoard {
   display: flex;
-
 }
 
 .floor{
@@ -33,5 +35,17 @@ html, body {
 }
 
 .floor:hover {
-  background-color: chartreuse;
+  background-color: yellow;
+}
+
+.announcement {
+  font-size: 10rem;
+  align-self: flex-start;
+}
+
+.btn {
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  font-size: 2rem;
 }
