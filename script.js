@@ -19,9 +19,7 @@ const checkGame = (function () {
         let totalPoints = [];
         for (let i = 0; i < 3; i++) {
           const variable = `${array[i]}`;
-          // console.log(variable);
           const floor = document.getElementsByClassName(variable);
-          // console.log(floor[0].innerHTML);
           if (floor[0].innerHTML == 'X') totalPoints.push('X');
           else return;
         };
@@ -60,7 +58,7 @@ const checkGame = (function () {
   }
 
   function clearField () {
-    gameBoard = [];
+    game.gameBoard.length = 0;
     game.floors.forEach(floor => floor.innerText = '');
     announcement.replaceChildren();
   }
