@@ -73,7 +73,8 @@ const checkGame = (function () {
 
   return {
     checkScoreOne,
-    checkScoreTwo
+    checkScoreTwo,
+    announcement
   }
 
 })();
@@ -87,11 +88,23 @@ const game = (function () {
   //cache DOM
   const floors = document.querySelectorAll('.floor');
 
-  floors.forEach(floor => {
-    floor.addEventListener('click', addMark);
-    floor.addEventListener('click', checkGame.checkScoreOne);
-    floor.addEventListener('click', checkGame.checkScoreTwo)
-  });
+  if (checkGame.announcement.querySelector('.btn') == null){
+    floors.forEach(floor => {
+      floor.addEventListener('click', addMark);
+      floor.addEventListener('click', checkGame.checkScoreOne);
+      floor.addEventListener('click', checkGame.checkScoreTwo);
+    });
+  }
+ 
+  if (checkGame.announcement.querySelector('.btn') !== null){
+    floors.forEach(floor => {
+    floor.removeEventListener('click', addMark);
+    floor.removeEventListener('click', checkGame.checkScoreOne);
+    floor.removeEventListener('click', checkGame.checkScoreTwo);
+    console.log('this is working')
+    });
+  };
+
 
   function addMark() {
     if ((this.innerText == 'X') || (this.innerText == 'O')) return;
