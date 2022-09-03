@@ -9,6 +9,7 @@ html, body {
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 5fr 1fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -18,10 +19,12 @@ html, body {
   justify-self: center;
   align-self: center;
   font-size: 5rem;
+  grid-column: 2;
 }
 
 .gameBoard {
   display: flex;
+  grid-column: 2;
 }
 
 .floor{
@@ -41,6 +44,7 @@ html, body {
 .announcement {
   font-size: 10rem;
   align-self: flex-start;
+  grid-column: 2;
 }
 
 .btn {
@@ -51,4 +55,38 @@ html, body {
   outline: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 20px;
+}
+
+.buttons {
+  grid-column: 2;
+}
+
+.playerOne {
+  grid-column: 1/2;
+  grid-row: 1/-1;
+}
+
+.playerTwo {
+  grid-column: 3/4;
+  grid-row: 1/-1;
+}
+
+.playerOne, .playerTwo {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+
+.playerOne > input, .playerTwo > input {
+  padding: 5px 10px;
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 3rem;
+}
+
+.playerOne > label, .playerTwo > label {
+  font-size: 3rem;
+  font-weight: 600;
 }
