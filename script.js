@@ -77,11 +77,13 @@ const checkGame = (function () {
     player.playerTwoVal.length = 0;
   }
 
-  // function checkDraw () {
-  //   if (game.gameBoard.length == 9) {
-  //     createDiv("It's a draw!")
-  //   } else return;
-  // }
+  function checkDraw () {
+    if (game.gameBoard.length == 9) {
+      createDiv("It's a draw!");
+      buttons.btnStart.disabled = false;
+      game.rmvCheckDraw();
+    };
+  }
 
   function createBtn(content, func) {
     const btn = document.createElement('button');
@@ -96,7 +98,7 @@ const checkGame = (function () {
     checkScoreTwo,
     announcement,
     reset,
-    // checkDraw
+    checkDraw
   }
 
 })();
@@ -115,7 +117,7 @@ const game = (function () {
     floor.addEventListener('click', addMark);
     floor.addEventListener('click', checkGame.checkScoreOne);
     floor.addEventListener('click', checkGame.checkScoreTwo);
-    // floor.addEventListener('click', checkGame.checkDraw);
+    floor.addEventListener('click', checkGame.checkDraw);
     });
   }
 
@@ -125,6 +127,12 @@ const game = (function () {
     floor.removeEventListener('click', checkGame.checkScoreOne);
     floor.removeEventListener('click', checkGame.checkScoreTwo);
     console.log('this is working')
+    });
+  }
+
+  function rmvCheckDraw () {
+    floors.forEach(floor => {
+      floor.removeEventListener('click', checkGame.checkDraw);
     });
   }
 
@@ -146,7 +154,8 @@ const game = (function () {
     gameBoard,
     floors,
     rmvEventListener,
-    applyEventListener
+    applyEventListener,
+    rmvCheckDraw
   };
 
 })();
@@ -177,8 +186,6 @@ const player = (function () {
   function addLabelInput () {
     playerOne.replaceChildren(playerOneLabel, playerOneInput);
     playerTwo.replaceChildren(playerTwoLabel, playerTwoInput);
-    // playeOneVal = '';
-    // playerTwoVal = '';
   }
 
   return {
