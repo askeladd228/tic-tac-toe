@@ -192,7 +192,9 @@ const player = (function () {
     playerOneVal,
     playerTwoVal,
     uploadPlayer,
-    addLabelInput
+    addLabelInput,
+    playerOne,
+    playerTwo
   }
 })();
 

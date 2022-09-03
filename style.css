@@ -9,7 +9,7 @@ html, body {
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 5fr 1fr 1fr;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -33,12 +33,17 @@ html, body {
   justify-content: center;
   width: 200px;
   height: 200px;
-  border: 2px solid black;
+  border: 5px solid black;
   font-size: 10rem;
 }
 
 .floor:hover {
-  background-color: yellow;
+  background-color: white;
+  box-shadow: 0 0 10px black;
+  outline: none;
+  padding: 0;
+  transition: 200ms;
+  cursor: pointer;
 }
 
 .announcement {
@@ -56,7 +61,16 @@ html, body {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+  box-shadow: -5px 5px;
 }
+
+.btn:hover {
+  background-color: black;
+  color: white;
+  transition: 200ms;
+  box-shadow: -5px 5px 5px red;
+}
+
 
 .buttons {
   grid-column: 2;
@@ -85,9 +99,29 @@ html, body {
   height: 40px;
   border-radius: 10px;
   font-size: 3rem;
+  outline: none;
+  box-shadow: -5px 5px;;
 }
 
 .playerOne > label, .playerTwo > label {
   font-size: 3rem;
   font-weight: 600;
 }
+
+.one, .four, .six {
+  border-left-color: white;
+}
+
+.one, .two, .three {
+  border-top-color: white;
+}
+
+.three, .five, .eight {
+  border-right-color: white;
+}
+
+.six, .seven, .eight {
+  border-bottom-color: white;
+}
+
+
