@@ -65,7 +65,11 @@ const checkGame = (function () {
 
   function reset () {
     game.gameBoard.length = 0;
-    game.floors.forEach(floor => floor.innerText = '');
+    game.floors.forEach(floor => {
+      floor.innerText = '';
+      floor.classList.remove('x');
+      floor.classList.remove('o');
+    });
     announcement.replaceChildren();
     game.applyEventListener();
     buttons.btnStart.disabled = false;
@@ -106,8 +110,8 @@ const checkGame = (function () {
 const game = (function () {
   let gameBoard = [];
 
-  const playerOne = 'X'
-  const playerTwo = 'O'
+  const playerOne = 'X';
+  const playerTwo = 'O';
 
   //cache DOM
   const floors = document.querySelectorAll('.floor');
@@ -141,6 +145,9 @@ const game = (function () {
     else {
       addMarkToSystem();
       this.innerText = gameBoard[gameBoard.length-1];
+      const kelas = this.innerText;
+      const lowKelas = kelas.toLowerCase();
+      this.classList.add(`${lowKelas}`);
     }
   }
 

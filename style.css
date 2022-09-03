@@ -35,6 +35,7 @@ html, body {
   height: 200px;
   border: 5px solid black;
   font-size: 10rem;
+  cursor: pointer;
 }
 
 .floor:hover {
@@ -69,6 +70,7 @@ html, body {
   color: white;
   transition: 200ms;
   box-shadow: -5px 5px 5px red;
+  cursor: pointer;
 }
 
 
@@ -124,4 +126,15 @@ html, body {
   border-bottom-color: white;
 }
 
+.x {
+  color: red;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.o {
+  color: blue;
+  transition: 200ms;
+  cursor: pointer;
+}
 
