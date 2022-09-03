@@ -25,8 +25,8 @@ const checkGame = (function () {
         };
         
         if (totalPoints.length == 3) {
-          if (document.getElementById('playerOne').value !== '') {
-            createDiv(`${document.getElementById('playerOne').value} Wins!`);
+          if (player.playerOneVal.length == 1) {
+            createDiv(`${player.playerOneVal[0]} Wins!`);
           } else createDiv('Player One Wins!');
           game.rmvEventListener();
           buttons.btnStart.disabled = true;
@@ -47,8 +47,8 @@ const checkGame = (function () {
         };
         
         if (totalPoints.length == 3) {
-          if (document.getElementById('playerTwo').value !== '') {
-            createDiv(`${document.getElementById('playerTwo').value} Wins!`);
+          if (player.playerTwoVal == 1) {
+            createDiv(`${player.playerTwoVal[0]} Wins!`);
           } else createDiv('Player Two Wins!');
           game.rmvEventListener();
           buttons.btnStart.disabled = true;
@@ -73,7 +73,15 @@ const checkGame = (function () {
     player.addLabelInput();
     document.getElementById('playerOne').value = ''
     document.getElementById('playerTwo').value = ''
+    player.playerOneVal.length = 0;
+    player.playerTwoVal.length = 0;
   }
+
+  // function checkDraw () {
+  //   if (game.gameBoard.length == 9) {
+  //     createDiv("It's a draw!")
+  //   } else return;
+  // }
 
   function createBtn(content, func) {
     const btn = document.createElement('button');
@@ -87,7 +95,8 @@ const checkGame = (function () {
     checkScoreOne,
     checkScoreTwo,
     announcement,
-    reset
+    reset,
+    // checkDraw
   }
 
 })();
@@ -106,6 +115,7 @@ const game = (function () {
     floor.addEventListener('click', addMark);
     floor.addEventListener('click', checkGame.checkScoreOne);
     floor.addEventListener('click', checkGame.checkScoreTwo);
+    // floor.addEventListener('click', checkGame.checkDraw);
     });
   }
 
@@ -143,8 +153,8 @@ const game = (function () {
 
 const player = (function () {
   //cache DOM
-  // let playerOneVal = document.getElementById('playerOne').value;
-  // let playerTwoVal = document.getElementById('playerTwo').value;
+  let playerOneVal = [];
+  let playerTwoVal = [];
   const playerOne = document.querySelector('.playerOne');
   const playerTwo = document.querySelector('.playerTwo');
   const playerOneLabel = document.querySelector('.labelOne');
@@ -154,10 +164,13 @@ const player = (function () {
 
   function uploadPlayer () {
     if (document.getElementById('playerOne').value !== '') {
-      playerOne.replaceChildren(document.getElementById('playerOne').value);
+      playerOneVal.push(document.getElementById('playerOne').value);
+      playerOne.replaceChildren(`${playerOneVal[0]}`);
     } else playerOne.replaceChildren('Player One');
     if (document.getElementById('playerTwo').value !== '') {
-      playerTwo.replaceChildren(document.getElementById('playerTwo').value);
+      playerTwoVal.push(document.getElementById('playerTwo').value);
+      playerTwo.replaceChildren(`${playerTwoVal[0]}`);
+    
     } else playerTwo.replaceChildren('Player Two');
   }
 
@@ -169,8 +182,8 @@ const player = (function () {
   }
 
   return {
-    // playerOneVal,
-    // playerTwoVal,
+    playerOneVal,
+    playerTwoVal,
     uploadPlayer,
     addLabelInput
   }
