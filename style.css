@@ -76,6 +76,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-self: center;
+  font-size: 3rem;
 }
 
 .playerOne > input, .playerTwo > input {

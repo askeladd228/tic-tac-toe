@@ -25,7 +25,9 @@ const checkGame = (function () {
         };
         
         if (totalPoints.length == 3) {
-          createDiv('Player One Wins!');
+          if (document.getElementById('playerOne').value !== '') {
+            createDiv(`${document.getElementById('playerOne').value} Wins!`);
+          } else createDiv('Player One Wins!');
           game.rmvEventListener();
           buttons.btnStart.disabled = true;
         } else return;
@@ -45,7 +47,9 @@ const checkGame = (function () {
         };
         
         if (totalPoints.length == 3) {
-          createDiv('Player Two Wins!');
+          if (document.getElementById('playerTwo').value !== '') {
+            createDiv(`${document.getElementById('playerTwo').value} Wins!`);
+          } else createDiv('Player Two Wins!');
           game.rmvEventListener();
           buttons.btnStart.disabled = true;
         } else return;
@@ -59,12 +63,16 @@ const checkGame = (function () {
     announcement.appendChild(div);
   }
 
-  function clearField () {
+  function reset () {
     game.gameBoard.length = 0;
     game.floors.forEach(floor => floor.innerText = '');
     announcement.replaceChildren();
     game.applyEventListener();
     buttons.btnStart.disabled = false;
+    game.rmvEventListener();
+    player.addLabelInput();
+    document.getElementById('playerOne').value = ''
+    document.getElementById('playerTwo').value = ''
   }
 
   function createBtn(content, func) {
@@ -79,7 +87,7 @@ const checkGame = (function () {
     checkScoreOne,
     checkScoreTwo,
     announcement,
-    clearField
+    reset
   }
 
 })();
@@ -134,8 +142,39 @@ const game = (function () {
 })();
 
 const player = (function () {
+  //cache DOM
+  // let playerOneVal = document.getElementById('playerOne').value;
+  // let playerTwoVal = document.getElementById('playerTwo').value;
+  const playerOne = document.querySelector('.playerOne');
+  const playerTwo = document.querySelector('.playerTwo');
+  const playerOneLabel = document.querySelector('.labelOne');
+  const playerTwoLabel = document.querySelector('.labelTwo');
+  const playerOneInput = document.getElementById('playerOne');
+  const playerTwoInput = document.getElementById('playerTwo');
 
-});
+  function uploadPlayer () {
+    if (document.getElementById('playerOne').value !== '') {
+      playerOne.replaceChildren(document.getElementById('playerOne').value);
+    } else playerOne.replaceChildren('Player One');
+    if (document.getElementById('playerTwo').value !== '') {
+      playerTwo.replaceChildren(document.getElementById('playerTwo').value);
+    } else playerTwo.replaceChildren('Player Two');
+  }
+
+  function addLabelInput () {
+    playerOne.replaceChildren(playerOneLabel, playerOneInput);
+    playerTwo.replaceChildren(playerTwoLabel, playerTwoInput);
+    // playeOneVal = '';
+    // playerTwoVal = '';
+  }
+
+  return {
+    // playerOneVal,
+    // playerTwoVal,
+    uploadPlayer,
+    addLabelInput
+  }
+})();
 
 const buttons = (function () {
   //cache DOM
@@ -144,10 +183,11 @@ const buttons = (function () {
 
   function start () {
     btnStart.addEventListener('click', game.applyEventListener);
+    btnStart.addEventListener('click', player.uploadPlayer);
   }
 
   function restart (){
-    btnRestart.addEventListener('click', checkGame.clearField);
+    btnRestart.addEventListener('click', checkGame.reset);
   }
 
   start();
